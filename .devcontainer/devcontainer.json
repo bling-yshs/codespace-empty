@@ -1,0 +1,25 @@
+{
+  "name": "GTNH Forge 1.7.10 Dev",
+
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25",
+      "additionalVersions": "8,17",
+      "jdkDistro": "zulu",
+      "installGradle": "false",
+      "installMaven": "false",
+    },
+  },
+
+  "postCreateCommand": "mkdir -p ~/.gradle && JAVA_PATHS=$(find /usr/local/sdkman/candidates/java -maxdepth 1 -mindepth 1 -type d ! -name current | paste -sd, -) && printf 'org.gradle.java.installations.paths=%s\\norg.gradle.java.installations.auto-download=false\\norg.gradle.configuration-cache=false\\n' \"$JAVA_PATHS\" > ~/.gradle/gradle.properties && cat ~/.gradle/gradle.properties",
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack"],
+    },
+  },
+
+  "remoteUser": "vscode",
+}
